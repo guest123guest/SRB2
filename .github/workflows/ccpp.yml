@@ -1,0 +1,17 @@
+name: C/C++ CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v1
+    - name: apt-get
+      run: sudo apt-get install     build-essential nasm libpng-dev zlib1g-dev libsdl2-dev libsdl2-mixer-dev libgme-dev
+    - name: configure
+      run: set PREFIX=i686-w64-mingw32
+    - name: make
+      run: make -C src/ MINGW=1 
